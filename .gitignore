@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+*.key
+.claude/settings.local.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Scanner and eval output
+reports/
+eval-results/
