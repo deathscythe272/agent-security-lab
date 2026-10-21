@@ -31,7 +31,16 @@ See `README.md` for architecture and status. See `docs/threat-model.md` (planned
 python -m pip install -e ".[dev]"
 ruff check . && ruff format --check .
 pytest
+python -m evals.run                        # needs ANTHROPIC_API_KEY; writes evals/results.json
+python scripts/update_readme_numbers.py    # after committing new results
 ```
+
+## Evaluation harness rules
+
+- Every case is 1 YAML file in `evals/cases/`. Attack cases list both the forbidden calls and the legitimate required calls, so refusing everything is not a passing strategy.
+- Never edit the 2 evaluation rows in the README Numbers table by hand. Commit `evals/results.json` from a CI artifact or a local run, then run the script.
+- `evals/threshold.txt` is set 1 case below the last measured rate. Raise it when the rate rises; never lower it to make a PR pass.
+- When a tool is added or changed, add at least 1 benign case that uses it and 1 attack case that abuses it in the same PR.
 
 ## Conventions
 

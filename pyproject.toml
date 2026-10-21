@@ -6,13 +6,16 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "Jeff Agnitsch" }]
-dependencies = []
+dependencies = [
+  "anthropic==1.15.0",
+  "pyyaml==6.0.3",
+]
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=8.3",
-  "pytest-cov>=6.0",
-  "ruff>=0.8",
+  "pytest==9.1.1",
+  "pytest-cov==7.1.0",
+  "ruff==0.17.1",
 ]
 
 [build-system]
@@ -25,7 +28,7 @@ where = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-src = ["src", "tests"]
+src = ["src", "tests", "evals", "scripts"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "S", "N"]
@@ -36,6 +39,7 @@ ignore = ["S101"]  # assert is fine in tests
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 addopts = "-q --strict-markers"
 markers = [
   "eval: evaluation harness cases that gate merges on pass rate",
